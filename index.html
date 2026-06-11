@@ -3,15 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Indie Productions | Steam Edition</title>
+    <title>Indie Steam | Gaming Platform</title>
     
-    <!-- Google Fonts con estilo tecnológico y gamer -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
 
     <style>
-        /* VARIABLES DE ESTILO STEAM */
         :root {
             --steam-dark: #171a21;
             --steam-navy: #1b2838;
@@ -31,36 +29,6 @@
             --font-mono: 'JetBrains Mono', monospace;
         }
 
-        /* PALETAS DE COLOR DE TEMAS CONMUTABLES */
-        [data-theme="cyber-deck"] {
-            --steam-navy: #0e051c;
-            --steam-dark: #070214;
-            --steam-blue: #ff2a85;
-            --neon-pink: #00f3ff;
-            --steam-btn-green: #9d4edd;
-            --steam-btn-hover: #b5179e;
-            --panel-border: rgba(255, 42, 133, 0.3);
-        }
-
-        [data-theme="solarpunk"] {
-            --steam-navy: #0b1a13;
-            --steam-dark: #020a06;
-            --steam-blue: #00ff88;
-            --steam-btn-green: #1b4d3e;
-            --steam-btn-hover: #2e7d32;
-            --panel-border: rgba(0, 255, 136, 0.3);
-        }
-
-        [data-theme="console-gold"] {
-            --steam-navy: #1a150b;
-            --steam-dark: #0d0a05;
-            --steam-blue: #ffd700;
-            --steam-btn-green: #a87d00;
-            --steam-btn-hover: #ffaa00;
-            --panel-border: rgba(255, 215, 0, 0.3);
-        }
-
-        /* RESET GENERAL */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -79,19 +47,12 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            position: relative;
         }
 
-        /* CURSOR RETRO PERSONALIZADO */
-        html, body {
-            cursor: crosshair;
-        }
+        html, body { cursor: crosshair; }
+        a, button, input, select, label { cursor: pointer; }
 
-        a, button, input, select, label, video {
-            cursor: pointer;
-        }
-
-        /* REJILLA DE PERSPECTIVA RETRO */
+        /* EFECTOS DE FONDO */
         body::before {
             content: "";
             position: absolute;
@@ -104,7 +65,6 @@
             pointer-events: none;
         }
 
-        /* EFECTO CRT CONMUTABLE */
         .crt-scanlines {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -118,67 +78,31 @@
             display: none !important;
         }
 
-        /* BURBUJAS DE ENERGÍA */
-        .cyber-bubbles {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            overflow: hidden;
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        .bubble {
-            position: absolute;
-            bottom: -100px;
-            background: rgba(102, 192, 244, 0.01);
-            border: 1px solid rgba(102, 192, 244, 0.08);
-            box-shadow: inset 0 0 10px rgba(102, 192, 244, 0.1), 0 0 15px rgba(102, 192, 244, 0.03);
-            border-radius: 50%;
-            animation: floatUp infinite linear;
-        }
-
-        .bubble:nth-child(1) { left: 5%; width: 45px; height: 45px; animation-duration: 12s; }
-        .bubble:nth-child(2) { left: 25%; width: 75px; height: 75px; animation-duration: 18s; animation-delay: 2s; }
-        .bubble:nth-child(3) { left: 50%; width: 30px; height: 30px; animation-duration: 9s; animation-delay: 4s; }
-        .bubble:nth-child(4) { left: 75%; width: 90px; height: 90px; animation-duration: 22s; }
-        .bubble:nth-child(5) { left: 90%; width: 50px; height: 50px; animation-duration: 15s; animation-delay: 1s; }
-
-        @keyframes floatUp {
-            0% { transform: translateY(0) scale(1); opacity: 0; }
-            15% { opacity: 0.5; }
-            85% { opacity: 0.5; }
-            100% { transform: translateY(-120vh) scale(1.1); opacity: 0; }
-        }
-
-        /* --- MENÚ DE NAVEGACIÓN ESTILO CLIENTE STEAM --- */
+        /* NAVEGACIÓN */
         .steam-client-nav {
             background-color: var(--steam-dark);
-            border-bottom: 1px solid rgba(102, 192, 244, 0.1);
+            border-bottom: 2px solid var(--steam-blue);
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 8px 30px;
+            padding: 12px 30px;
             z-index: 100;
         }
 
         .steam-brand {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
             font-family: var(--font-display);
-            font-size: 0.95rem;
+            font-size: 1rem;
             font-weight: 900;
-            color: var(--text-white);
+            color: var(--steam-blue);
             letter-spacing: 2px;
-        }
-
-        .steam-brand svg {
-            fill: var(--steam-blue);
         }
 
         .steam-tabs {
             display: flex;
-            gap: 20px;
+            gap: 25px;
         }
 
         .steam-tab {
@@ -186,11 +110,12 @@
             border: none;
             color: var(--text-muted);
             font-family: var(--font-display);
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: bold;
-            letter-spacing: 1.5px;
-            padding: 6px 12px;
-            transition: color 0.2s, background 0.2s;
+            letter-spacing: 1px;
+            padding: 8px 16px;
+            transition: all 0.3s;
+            border-bottom: 3px solid transparent;
         }
 
         .steam-tab:hover {
@@ -199,7 +124,7 @@
 
         .steam-tab.active {
             color: var(--steam-blue);
-            border-bottom: 2px solid var(--steam-blue);
+            border-bottom-color: var(--steam-blue);
         }
 
         .steam-client-settings {
@@ -208,440 +133,278 @@
             gap: 15px;
         }
 
-        .client-select {
+        .client-select, .btn-client-crt {
             background: #141f30;
             color: var(--steam-blue);
             border: 1px solid rgba(102, 192, 244, 0.3);
             border-radius: 4px;
-            padding: 4px 8px;
+            padding: 6px 12px;
             font-family: var(--font-mono);
-            font-size: 0.8rem;
-        }
-
-        .btn-client-crt {
-            background: rgba(102, 192, 244, 0.1);
-            color: var(--steam-blue);
-            border: 1px solid var(--steam-blue);
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-family: var(--font-display);
             font-size: 0.75rem;
-            font-weight: bold;
+            transition: all 0.2s;
         }
 
-        .btn-client-crt.inactive {
-            border-color: var(--text-muted);
-            color: var(--text-muted);
-            background: transparent;
+        .btn-client-crt:hover {
+            border-color: var(--steam-blue);
+            background: rgba(102, 192, 244, 0.1);
         }
 
-        /* --- DISEÑO PRINCIPAL DE PESTAÑAS (BIBLIOTECA) --- */
+        /* CONTENEDOR PRINCIPAL */
         .client-content-view {
-            display: none; /* Controlado dinámicamente */
-            width: 100%;
-            max-width: 1600px;
-            margin: 25px auto;
-            padding: 0 25px;
+            display: none;
             flex: 1;
+            width: 100%;
+            padding: 25px 30px;
+            overflow-y: auto;
             z-index: 10;
         }
 
         .client-content-view.active {
+            display: flex;
+        }
+
+        /* TIENDA */
+        .store-grid {
             display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
         }
 
-        /* BIBLIOTECA VIEWPORT */
-        .library-layout {
-            grid-template-columns: 1fr;
-            gap: 25px;
-        }
-
-        @media (min-width: 1100px) {
-            .library-layout {
-                grid-template-columns: 320px 1fr;
-            }
-        }
-
-        /* BARRA LATERAL (MY GAMES / CASSETTES LIST) */
-        .library-sidebar {
-            background: rgba(23, 26, 33, 0.85);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+        .game-card {
+            background: rgba(23, 26, 33, 0.9);
+            border: 1px solid rgba(102, 192, 244, 0.2);
             border-radius: 12px;
-            padding: 18px;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            max-height: 720px;
-            overflow-y: auto;
+            overflow: hidden;
+            transition: all 0.3s;
+            cursor: pointer;
         }
 
-        .sidebar-title {
-            font-family: var(--font-display);
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            letter-spacing: 1px;
-            margin-bottom: 5px;
-        }
-
-        .project-list {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .project-card {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid transparent;
-            border-radius: 8px;
-            padding: 10px 14px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            transition: all 0.2s ease;
-        }
-
-        .project-card:hover {
-            background: rgba(102, 192, 244, 0.05);
-            border-color: rgba(102, 192, 244, 0.2);
-        }
-
-        .project-card.active {
-            background: rgba(102, 192, 244, 0.1);
+        .game-card:hover {
             border-color: var(--steam-blue);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(102, 192, 244, 0.2);
         }
 
-        .project-icon {
-            width: 32px;
-            height: 32px;
-            background: var(--steam-navy);
-            border-radius: 6px;
+        .game-thumbnail {
+            width: 100%;
+            height: 150px;
+            background: linear-gradient(135deg, #66c0f4, #1b2838);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: var(--steam-blue);
-            font-size: 1.1rem;
+            font-size: 3rem;
             font-weight: bold;
         }
 
-        .project-info {
-            flex: 1;
-            overflow: hidden;
-        }
-
-        .project-name {
-            font-size: 0.9rem;
-            font-weight: 600;
-            color: var(--text-white);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .project-meta {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-        }
-
-        /* --- VISTA DETALLADA DEL CASSETTE SELECCIONADO --- */
-        .library-details-panel {
-            background: var(--panel-bg);
-            border: 1px solid var(--panel-border);
-            border-radius: 20px;
-            padding: 24px;
-            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+        .game-info {
+            padding: 15px;
             display: flex;
             flex-direction: column;
-            gap: 20px;
-            position: relative;
-            height: 720px;
+            gap: 10px;
         }
 
-        /* Banner de lanzamiento */
-        .game-launch-header {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            background: linear-gradient(135deg, rgba(27, 40, 56, 0.8) 0%, rgba(10, 5, 27, 0.9) 100%);
-            padding: 20px;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.03);
-        }
-
-        @media (min-width: 768px) {
-            .game-launch-header {
-                flex-direction: row;
-                align-items: center;
-                justify-content: space-between;
-            }
-        }
-
-        .launch-left-info {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-        }
-
-        .launch-game-title {
+        .game-title {
             font-family: var(--font-display);
-            font-size: 1.4rem;
-            font-weight: 900;
+            font-weight: bold;
             color: var(--text-white);
-            letter-spacing: 1px;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.5);
         }
 
-        .launch-btn-container {
-            display: flex;
-            align-items: center;
-            gap: 15px;
+        .game-price {
+            color: var(--steam-btn-green);
+            font-weight: bold;
+            font-size: 0.9rem;
         }
 
-        /* El icónico botón "JUGAR" de Steam */
-        .btn-steam-play {
-            background: linear-gradient(to right, var(--steam-btn-green) 0%, #47620a 100%);
+        .btn-add-cart {
+            background: var(--steam-btn-green);
             color: var(--text-white);
             border: none;
+            padding: 8px 16px;
             border-radius: 4px;
-            padding: 14px 45px;
-            font-family: var(--font-display);
             font-weight: bold;
-            font-size: 1.2rem;
-            letter-spacing: 2px;
-            box-shadow: 0 4px 15px rgba(92, 126, 16, 0.3);
             transition: all 0.2s;
         }
 
-        .btn-steam-play:hover {
-            background: linear-gradient(to right, var(--steam-btn-hover) 0%, #769e33 100%);
-            box-shadow: 0 6px 20px rgba(144, 186, 60, 0.5);
-            transform: scale(1.02);
+        .btn-add-cart:hover {
+            background: var(--steam-btn-hover);
         }
 
-        .btn-steam-play:active {
-            transform: scale(0.98);
-        }
-
-        .play-stats-container {
+        /* BIBLIOTECA */
+        .library-container {
             display: flex;
+            flex-direction: column;
             gap: 20px;
-            font-family: var(--font-mono);
-            font-size: 0.8rem;
-            color: var(--text-muted);
         }
 
-        .stat-block {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .stat-value {
-            color: var(--text-white);
-            font-weight: bold;
-            font-size: 0.9rem;
-        }
-
-        /* Viewport de reproducción */
-        .media-viewport-container {
-            flex: 1;
-            background: #020206;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.04);
-            display: flex;
-            flex-direction: column;
-            position: relative;
-        }
-
-        .video-box-frame {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-        }
-
-        video {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            background: #000;
-        }
-
-        /* Espectrómetro */
-        .viz-overlay {
-            position: absolute;
-            bottom: 0; left: 0; width: 100%; height: 60px;
-            background: linear-gradient(to top, rgba(23, 26, 33, 0.9), transparent);
-            pointer-events: none;
-            z-index: 10;
-        }
-
-        .viz-canvas {
-            width: 100%;
-            height: 100%;
-            display: block;
-        }
-
-        .mp4-placeholder-desc {
-            color: var(--text-muted);
-            text-align: center;
-            padding: 20px;
-            max-width: 80%;
-            line-height: 1.6;
-        }
-
-        /* --- PESTAÑA: TIENDA / SUBIR MULTIMEDIA --- */
-        .store-layout {
-            grid-template-columns: 1fr;
-            gap: 25px;
-        }
-
-        @media (min-width: 950px) {
-            .store-layout {
-                grid-template-columns: 1.3fr 0.7fr;
-            }
-        }
-
-        .store-hero-banner {
-            background: linear-gradient(to right, rgba(0,0,0,0.5), rgba(102, 192, 244, 0.05)), url('https://store.cloudflare.steamstatic.com/public/images/v6/home/background_main_spanish.jpg');
-            background-size: cover;
-            background-position: center;
-            border-radius: 16px;
-            padding: 40px;
-            border: 1px solid rgba(102, 192, 244, 0.1);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            gap: 15px;
-            min-height: 280px;
-        }
-
-        .store-hero-title {
-            font-family: var(--font-display);
-            font-size: 2rem;
-            color: var(--text-white);
-            text-shadow: 0 4px 10px rgba(0,0,0,0.8);
-        }
-
-        .store-uploader-card {
-            background: rgba(27, 40, 56, 0.9);
-            border: 2px dashed rgba(102, 192, 244, 0.3);
-            border-radius: 16px;
-            padding: 30px;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            cursor: pointer;
-            transition: border-color 0.2s, background 0.2s;
-        }
-
-        .store-uploader-card:hover {
-            border-color: var(--steam-blue);
-            background: rgba(102, 192, 244, 0.03);
-        }
-
-        /* --- PESTAÑA: COMUNIDAD / CHATBOT AMIGOS --- */
-        .community-layout {
-            grid-template-columns: 1fr;
-            gap: 25px;
-        }
-
-        @media (min-width: 1000px) {
-            .community-layout {
-                grid-template-columns: 1.4fr 0.8fr;
-            }
-        }
-
-        .steam-chat-window {
-            background: rgba(23, 26, 33, 0.9);
-            border: 1px solid rgba(102, 192, 244, 0.2);
-            border-radius: 16px;
-            display: flex;
-            flex-direction: column;
-            height: 600px;
-            overflow: hidden;
-            box-shadow: 0 12px 30px rgba(0,0,0,0.6);
-        }
-
-        .steam-chat-header {
-            background: #10121a;
-            border-bottom: 1px solid rgba(102, 192, 244, 0.1);
-            padding: 15px 20px;
+        .library-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 0 10px;
         }
 
-        .steam-chat-scroller {
-            flex: 1;
+        .library-header h2 {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            color: var(--text-white);
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 15px;
+        }
+
+        .game-library-item {
+            background: rgba(23, 26, 33, 0.8);
+            border: 2px solid rgba(102, 192, 244, 0.15);
+            border-radius: 8px;
+            padding: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .game-library-item:hover {
+            border-color: var(--steam-blue);
+            background: rgba(102, 192, 244, 0.05);
+        }
+
+        .game-icon {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .game-name {
+            font-family: var(--font-display);
+            font-weight: bold;
+            color: var(--text-white);
+            margin-bottom: 5px;
+        }
+
+        .game-playtime {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        /* CANVAS PARA JUEGOS */
+        .game-canvas-container {
+            background: #000;
+            border: 2px solid var(--steam-blue);
+            border-radius: 12px;
             padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        canvas {
+            border: 3px solid var(--steam-blue);
+            background: #0a0a0a;
+            display: block;
+        }
+
+        .game-controls {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .btn-control {
+            background: var(--steam-btn-green);
+            color: var(--text-white);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+
+        .btn-control:hover {
+            background: var(--steam-btn-hover);
+        }
+
+        /* CHAT */
+        .community-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .chat-window {
+            background: rgba(23, 26, 33, 0.95);
+            border: 1px solid rgba(102, 192, 244, 0.2);
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            height: 500px;
+            overflow: hidden;
+        }
+
+        .chat-header {
+            background: #10121a;
+            border-bottom: 1px solid rgba(102, 192, 244, 0.1);
+            padding: 15px 20px;
+            font-family: var(--font-display);
+            color: var(--text-white);
+        }
+
+        .chat-messages {
+            flex: 1;
             overflow-y: auto;
+            padding: 20px;
             display: flex;
             flex-direction: column;
             gap: 15px;
         }
 
-        .bubble-msg {
+        .chat-message {
             max-width: 80%;
             padding: 12px 16px;
-            border-radius: 12px;
-            font-size: 0.95rem;
-            line-height: 1.5;
-            word-wrap: break-word;
-            animation: msgAppear 0.2s ease-out forwards;
+            border-radius: 8px;
+            animation: slideIn 0.3s ease-out;
         }
 
-        .bubble-msg.user {
-            background: #112042;
-            color: var(--text-white);
+        .chat-message.user {
             align-self: flex-end;
-            border: 1px solid rgba(102, 192, 244, 0.3);
-            border-bottom-right-radius: 2px;
+            background: rgba(102, 192, 244, 0.2);
+            color: var(--text-white);
         }
 
-        .bubble-msg.bot {
-            background: rgba(255, 255, 255, 0.04);
-            color: var(--text-main);
+        .chat-message.bot {
             align-self: flex-start;
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-top-left-radius: 2px;
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-main);
         }
 
-        .bubble-msg.system {
-            background: rgba(255, 42, 133, 0.05);
-            border: 1px dashed var(--neon-pink);
-            color: #ff9fcf;
-            align-self: center;
-            max-width: 95%;
-            font-size: 0.85rem;
-        }
-
-        .chat-input-bar {
+        .chat-input-area {
             background: #10121a;
             border-top: 1px solid rgba(102, 192, 244, 0.1);
             padding: 15px;
             display: flex;
-            gap: 12px;
+            gap: 10px;
         }
 
-        .custom-input {
+        .chat-input {
             flex: 1;
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(102,192,244,0.2);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(102, 192, 244, 0.2);
             color: var(--text-white);
             padding: 10px 12px;
-            border-radius: 6px;
+            border-radius: 4px;
             font-family: var(--font-mono);
-            font-size: 0.85rem;
         }
 
-        .custom-input:focus {
+        .chat-input:focus {
             outline: none;
             border-color: var(--steam-blue);
-            background: rgba(102,192,244,0.05);
         }
 
         .btn-send {
@@ -649,971 +412,897 @@
             color: var(--steam-dark);
             border: none;
             padding: 10px 20px;
-            border-radius: 6px;
-            font-family: var(--font-display);
-            font-weight: bold;
-            font-size: 0.8rem;
-            transition: all 0.2s;
-        }
-
-        .btn-send:hover {
-            background: #90c4f9;
-            transform: scale(1.05);
-        }
-
-        .btn-clear-chat {
-            background: transparent;
-            border: 1px solid rgba(102,192,244,0.3);
-            color: var(--steam-blue);
-            padding: 4px 8px;
             border-radius: 4px;
-            font-family: var(--font-mono);
-            font-size: 0.7rem;
-            display: flex;
-            align-items: center;
-            gap: 4px;
-            transition: all 0.2s;
+            font-weight: bold;
         }
 
-        .btn-clear-chat:hover {
-            border-color: var(--steam-blue);
-            background: rgba(102,192,244,0.1);
-        }
-
-        /* --- PESTAÑA: PERFIL PREMIUM DE STEAM --- */
+        /* PERFIL */
         .profile-container {
-            background: rgba(23, 26, 33, 0.95);
-            border: 1px solid rgba(102, 192, 244, 0.15);
-            border-radius: 20px;
-            padding: 30px;
-            max-width: 1000px;
+            max-width: 900px;
             margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+            background: rgba(23, 26, 33, 0.95);
+            border: 1px solid rgba(102, 192, 244, 0.2);
+            border-radius: 12px;
+            padding: 30px;
         }
 
-        .steam-profile-header {
+        .profile-header {
             display: flex;
-            flex-direction: column;
-            gap: 25px;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            gap: 30px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             padding-bottom: 30px;
         }
 
-        @media (min-width: 768px) {
-            .steam-profile-header {
-                flex-direction: row;
-                align-items: center;
-            }
-        }
-
-        .avatar-huge-frame {
-            width: 110px;
-            height: 110px;
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, var(--steam-blue), var(--neon-pink));
             border-radius: 12px;
-            border: 3px solid var(--steam-blue);
-            background: #0d121a;
-            overflow: hidden;
-            box-shadow: 0 0 15px rgba(102, 192, 244, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
             flex-shrink: 0;
         }
 
-        .avatar-huge-frame img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .profile-header-details {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-
-        .profile-meta-row {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .profile-name-tag {
+        .profile-info h2 {
             font-family: var(--font-display);
+            font-size: 1.5rem;
             color: var(--text-white);
+            margin-bottom: 10px;
         }
 
-        .steam-level-badge {
-            background: #1b2838;
-            border: 2px solid var(--steam-blue);
-            border-radius: 20px;
-            padding: 4px 14px;
-            font-family: var(--font-display);
-            font-size: 0.85rem;
-            color: var(--text-white);
-            font-weight: bold;
-        }
-
-        .profile-actions {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
-        .btn-action-icon {
-            background: rgba(102,192,244,0.1);
-            border: 1px solid var(--steam-blue);
-            color: var(--steam-blue);
-            width: 36px;
-            height: 36px;
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s;
-        }
-
-        .btn-action-icon:hover {
-            background: rgba(102,192,244,0.2);
-            transform: scale(1.1);
-        }
-
-        .file-input {
-            display: none;
-        }
-
-        .achievements-grid {
+        .profile-stats {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
         }
 
-        .achievement-icon-card {
-            background: rgba(255,255,255,0.01);
-            border: 1px solid rgba(255,255,255,0.05);
-            border-radius: 10px;
-            padding: 12px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            text-align: center;
-            opacity: 0.4;
-            transition: all 0.3s;
-        }
-
-        .achievement-icon-card.unlocked {
-            opacity: 1;
-            background: rgba(144, 186, 60, 0.05);
-            border-color: var(--steam-btn-hover);
-        }
-
-        .badge-image {
-            width: 48px;
-            height: 48px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-        }
-
-        .badge-title {
-            font-size: 0.75rem;
-            font-weight: bold;
-            color: var(--text-muted);
-        }
-
-        .achievement-icon-card.unlocked .badge-title {
-            color: var(--text-white);
-        }
-
-        /* ESTADOS DE CARGA */
-        .status-pulse-compiling {
-            font-family: var(--font-display);
-            font-size: 0.8rem;
-            color: var(--steam-blue);
-            letter-spacing: 1.5px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            animation: pulse 1s infinite alternate;
-        }
-
-        @keyframes pulse {
-            from { opacity: 0.4; }
-            to { opacity: 1; }
-        }
-
-        /* NOTIFICACIÓN DE LOGRO FLOTANTE (ESTILO STEAM TOAST) */
-        .steam-notification {
-            position: fixed;
-            bottom: -100px;
-            right: 30px;
-            background: rgba(23, 26, 33, 0.95);
-            border: 2px solid var(--steam-blue);
+        .stat-box {
+            background: rgba(102, 192, 244, 0.05);
+            border: 1px solid rgba(102, 192, 244, 0.2);
             border-radius: 8px;
-            padding: 16px 20px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            z-index: 10000;
-            transition: bottom 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            padding: 20px;
+            text-align: center;
         }
 
-        .steam-notification.visible {
-            bottom: 30px;
-        }
-
-        .toast-icon {
-            font-size: 2.2rem;
-            animation: bounce 0.5s ease-out;
-        }
-
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        .toast-text {
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
-        }
-
-        .toast-heading {
+        .stat-value {
             font-family: var(--font-display);
-            font-size: 0.7rem;
+            font-size: 2rem;
             color: var(--steam-blue);
             font-weight: bold;
-            letter-spacing: 1px;
         }
 
-        .toast-title {
-            font-size: 0.9rem;
-            font-weight: bold;
-            color: var(--text-white);
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 5px;
         }
 
-        .panel {
-            background: var(--panel-bg);
-            border: 1px solid var(--panel-border);
-            border-radius: 16px;
-            padding: 20px;
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* MODAL */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal.active {
             display: flex;
-            flex-direction: column;
-            gap: 15px;
         }
 
-        .panel h2 {
+        .modal-content {
+            background: var(--steam-dark);
+            border: 2px solid var(--steam-blue);
+            border-radius: 12px;
+            padding: 30px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .modal-header h2 {
             font-family: var(--font-display);
-            font-size: 1.1rem;
             color: var(--text-white);
-            letter-spacing: 1px;
         }
 
-        @keyframes msgAppear {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        .btn-close {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .btn-close:hover {
+            color: var(--text-white);
+        }
+
+        @media (max-width: 768px) {
+            .steam-tabs {
+                gap: 10px;
+                font-size: 0.7rem;
+            }
+
+            .store-grid, .games-grid {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+
+            .profile-header {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
 <body>
+    <div id="crtOverlay" class="crt-scanlines"></div>
 
-    <!-- REPRODUCCIÓN RETRO CRT CONMUTABLE -->
-    <div id="crtOverlay" class="crt-scanlines" aria-hidden="true"></div>
-
-    <!-- ORBES DE ENERGÍA FLOTANTES DE FONDO -->
-    <div class="cyber-bubbles" aria-hidden="true">
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-        <div class="bubble"></div>
-    </div>
-
-    <!-- NOTIFICACIÓN DE LOGROS ESTILO STEAM -->
-    <div id="steamToast" class="steam-notification" aria-live="polite">
-        <div class="toast-icon" id="toastIcon">🏆</div>
-        <div class="toast-text">
-            <span class="toast-heading">LOGRO DESBLOQUEADO</span>
-            <span class="toast-title" id="toastTitle">Primer Lanzamiento</span>
-        </div>
-    </div>
-
-    <!-- --- BARRA DE NAVEGACIÓN CLIENTE STEAM --- -->
     <nav class="steam-client-nav">
-        <div class="steam-brand">
-            <svg width="20" height="20" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-4.387 18.062c-.752.127-1.428-.198-1.78-.857-.353-.659-.253-1.493.255-2.072l1.636-2.052.115-.145c.421-1.01 1.258-1.782 2.277-2.146l.484.484c-.655.452-1.078 1.206-1.078 2.059c0 1.381 1.119 2.5 2.5 2.5c.348 0 .677-.072.977-.202l-.645.748-1.558 1.942zm7.625-7.794l-2.062 1.625-.138-.046c-.504-.156-1.031-.225-1.554-.202l-.462-.462c.706-.525 1.583-.834 2.53-.834s1.824.309 2.53.834l-.844.685z"/></svg>
-            INDIE STEAM
-        </div>
+        <div class="steam-brand">🎮 INDIE STEAM</div>
         <div class="steam-tabs">
-            <button class="steam-tab" onclick="switchSteamTab('tienda', this)">TIENDA</button>
-            <button class="steam-tab active" onclick="switchSteamTab('biblioteca', this)">BIBLIOTECA</button>
-            <button class="steam-tab" onclick="switchSteamTab('comunidad', this)">COMUNIDAD</button>
-            <button class="steam-tab" onclick="switchSteamTab('perfil', this)">PERFIL</button>
+            <button class="steam-tab active" onclick="switchTab('tienda')">TIENDA</button>
+            <button class="steam-tab" onclick="switchTab('biblioteca')">BIBLIOTECA</button>
+            <button class="steam-tab" onclick="switchTab('comunidad')">COMUNIDAD</button>
+            <button class="steam-tab" onclick="switchTab('perfil')">PERFIL</button>
         </div>
         <div class="steam-client-settings">
-            <div class="setting-control">
-                <select id="clientTheme" class="client-select" aria-label="Cambiar tema visual">
-                    <option value="steam">STEAM NAVY</option>
-                    <option value="cyber-deck">CYBER DECK</option>
-                    <option value="solarpunk">SOLARPUNK</option>
-                    <option value="console-gold">DEEP GOLD</option>
-                </select>
-            </div>
-            <button id="crtBtn" class="btn-client-crt" title="Conmutar modo monitor de tubo CRT">CRT: ON</button>
+            <select id="clientTheme" class="client-select">
+                <option value="default">STEAM NAVY</option>
+                <option value="dark">CYBER MODE</option>
+            </select>
+            <button id="crtBtn" class="btn-client-crt" onclick="toggleCRT()">CRT: ON</button>
         </div>
     </nav>
 
-    <!-- --- PESTAÑA: BIBLIOTECA (REPRODUCTOR & CONTENIDOS) --- -->
-    <div id="view-biblioteca" class="client-content-view library-layout active">
-        <aside class="library-sidebar">
-            <h3 class="sidebar-title">MIS PROYECTOS / CASETES</h3>
-            <div class="project-list" id="projectList"></div>
-        </aside>
-
-        <main class="library-details-panel">
-            <div class="game-launch-header">
-                <div class="launch-left-info">
-                    <h2 class="launch-game-title" id="activeCassetteTitle">Sube o selecciona un casete</h2>
-                    <div class="play-stats-container">
-                        <div class="stat-block">
-                            <span>TIEMPO EN REPRODUCCIÓN</span>
-                            <span class="stat-value" id="statPlayTime">0 minutos</span>
-                        </div>
-                        <div class="stat-block">
-                            <span>LOGROS DESBLOQUEADOS</span>
-                            <span class="stat-value" id="statAchievementsCount">0 / 6</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="launch-btn-container">
-                    <button class="btn-steam-play" id="launchGameBtn" title="Hacer clic para iniciar la reproducción">JUGAR</button>
-                </div>
-            </div>
-
-            <div class="media-viewport-container" id="videoContainer">
-                <div class="video-box-frame">
-                    <div class="mp4-placeholder-desc">
-                        No hay señal de audio/video activa. Selecciona un casete interactivo de la biblioteca lateral o ve a la pestaña "TIENDA" para montar un archivo .MP4 propio.
-                    </div>
-                </div>
-            </div>
-        </main>
-    </div>
-
-    <!-- --- PESTAÑA: TIENDA (SISTEMA DE CARGA DE ARCHIVOS) --- -->
-    <div id="view-tienda" class="client-content-view store-layout">
-        <div class="panel">
-            <div class="store-hero-banner">
-                <h3 class="store-hero-title">¡SUBE TU PROPIO JUEGO MULTIMEDIA!</h3>
-                <p>Publica tu archivo de video .MP4 local para cargarlo directamente en tu biblioteca personal de Steam Indie.</p>
-            </div>
-            <div style="margin-top: 25px;">
-                <label for="videoUploader" class="store-uploader-card">
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--steam-blue)" stroke-width="1.5"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/></svg>
-                    <span style="font-weight: bold; font-size: 1.1rem; color: #fff;">ARRASTRA O MONTA UN ARCHIVO .MP4 AQUÍ</span>
-                    <span style="font-size: 0.85rem; color: var(--text-muted);">El decodificador creará un nuevo Casete interactivo dentro de tu biblioteca.</span>
-                </label>
-                <input type="file" id="videoUploader" class="file-input" accept="video/mp4">
-            </div>
-        </div>
-        <div class="panel" style="justify-content: center; gap: 15px;">
-            <h2>TIENDA RECOMENDADOS</h2>
-            <div style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 8px;">
-                <p style="font-weight: bold; color: #fff; margin-bottom: 5px;">SDK de Gemini 1.5 - Documentación</p>
-                <p style="font-size: 0.85rem; color: var(--text-muted);">Usa el asistente en la pestaña COMUNIDAD para resolver dudas del SDK.</p>
-            </div>
-            <div style="background: rgba(0,0,0,0.2); padding: 15px; border-radius: 8px;">
-                <p style="font-weight: bold; color: #fff; margin-bottom: 5px;">Efectos Especiales Synthwave</p>
-                <p style="font-size: 0.85rem; color: var(--text-muted);">Optimizado para monitor de tubo CRT conmutable.</p>
-            </div>
+    <!-- TIENDA -->
+    <div id="tienda" class="client-content-view active">
+        <div style="width: 100%;">
+            <h2 style="font-family: var(--font-display); font-size: 1.3rem; margin-bottom: 20px; color: var(--text-white);">🛍️ TIENDA - JUEGOS DISPONIBLES</h2>
+            <div class="store-grid" id="storeGrid"></div>
         </div>
     </div>
 
-    <!-- --- PESTAÑA: COMUNIDAD (CHAT AMIGOS & ASISTENTE) --- -->
-    <div id="view-comunidad" class="client-content-view community-layout">
-        <div class="steam-chat-window">
-            <div class="steam-chat-header">
-                <div style="display: flex; align-items: center; gap: 10px;">
-                    <span style="width: 10px; height: 10px; background: var(--success-green); border-radius: 50%; box-shadow: 0 0 6px var(--success-green);"></span>
-                    <span style="font-family: var(--font-display); font-size: 0.85rem; font-weight: bold; color: #fff;">SOPORTE DE JUEGOS INDIE AI</span>
-                </div>
-                <button id="clearChatBtn" class="btn-clear-chat">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
-                    RESET TERMINAL
-                </button>
+    <!-- BIBLIOTECA -->
+    <div id="biblioteca" class="client-content-view">
+        <div class="library-container" style="width: 100%;">
+            <div class="library-header">
+                <h2>📚 MI BIBLIOTECA</h2>
+                <span style="color: var(--text-muted); font-size: 0.9rem;" id="gameCount">0 JUEGOS</span>
             </div>
-            <div class="steam-chat-scroller" id="chatBox">
-                <div class="bubble-msg bot">Chatbot: Te ayudaré en lo que necesites</div>
-            </div>
-            <div class="chat-input-bar">
-                <input type="text" id="userInput" class="custom-input" placeholder="Hazle una consulta al soporte de Steam sobre código..." autocomplete="off">
-                <button id="sendBtn" class="btn-send">SEND</button>
-            </div>
+            <div class="games-grid" id="libraryGrid"></div>
+            <div id="gamePlayContainer" style="display: none; margin-top: 30px;"></div>
         </div>
-        <div class="panel">
-            <h2>AMIGOS CONECTADOS</h2>
-            <div style="display: flex; flex-direction: column; gap: 12px; margin-top: 10px;">
-                <div style="display: flex; align-items: center; gap: 10px;">
-                    <span style="width: 8px; height: 8px; background: var(--success-green); border-radius: 50%;"></span>
-                    <span>Desarrollador_PRO (Jugando a Gemini 1.5)</span>
-                </div>
-                <div style="display: flex; align-items: center; gap: 10px;">
-                    <span style="width: 8px; height: 8px; background: var(--success-green); border-radius: 50%;"></span>
-                    <span>Derpixion_Fan (Diseñando en TVPaint)</span>
-                </div>
-                <div style="display: flex; align-items: center; gap: 10px;">
-                    <span style="width: 8px; height: 8px; background: #626378; border-radius: 50%;"></span>
-                    <span style="color: var(--text-muted);">Cineasta_Guerilla (Desconectado)</span>
+    </div>
+
+    <!-- COMUNIDAD -->
+    <div id="comunidad" class="client-content-view">
+        <div class="community-container">
+            <h2 style="font-family: var(--font-display); font-size: 1.3rem; color: var(--text-white);">💬 COMUNIDAD - CHAT CON GÉMINI</h2>
+            <div class="chat-window">
+                <div class="chat-header">Asistente Indie Steam</div>
+                <div class="chat-messages" id="chatMessages"></div>
+                <div class="chat-input-area">
+                    <input type="text" class="chat-input" id="chatInput" placeholder="Escribe tu pregunta..." onkeypress="handleChatKeypress(event)">
+                    <button class="btn-send" onclick="sendChatMessage()">Enviar</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- --- PESTAÑA: PERFIL (FOTO, NOMBRE Y LOGROS) --- -->
-    <div id="view-perfil" class="client-content-view">
+    <!-- PERFIL -->
+    <div id="perfil" class="client-content-view">
         <div class="profile-container">
-            <div class="steam-profile-header">
-                <div class="avatar-huge-frame">
-                    <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232c2d4a'><path d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5-4-8-4z'/></svg>" id="avatarDisplay" alt="Foto perfil enorme">
-                </div>
-                <div class="profile-header-details">
-                    <div class="profile-meta-row">
-                        <span class="profile-name-tag" id="profileNameDisplay" style="font-size: 1.6rem;">PLAYER ONE</span>
-                        <span class="steam-level-badge">Nivel Creador Indie: <span id="indieLevelVal">10</span></span>
-                    </div>
-                    <div class="profile-actions" style="margin-top: 10px; max-width: 500px;">
-                        <input type="text" id="nameInput" class="custom-input" placeholder="Modificar nombre de Steam..." maxlength="18">
-                        <label for="avatarUploader" class="btn-action-icon" style="cursor: pointer;" title="Cargar avatar">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>
-                        </label>
-                        <input type="file" id="avatarUploader" class="file-input" accept="image/*">
+            <div class="profile-header">
+                <div class="profile-avatar">👤</div>
+                <div class="profile-info">
+                    <h2>SteamDeck Gamer</h2>
+                    <p style="color: var(--text-muted); margin-bottom: 10px;">Indie Productions Player</p>
+                    <div style="display: flex; gap: 10px;">
+                        <span style="background: rgba(102, 192, 244, 0.1); padding: 4px 12px; border-radius: 4px; font-size: 0.8rem;">Level 15</span>
+                        <span style="background: rgba(76, 175, 80, 0.1); padding: 4px 12px; border-radius: 4px; font-size: 0.8rem;">✓ Activo</span>
                     </div>
                 </div>
             </div>
 
-            <div>
-                <h2 style="margin-bottom: 20px;">LOGROS PERSONALES DE STEAM</h2>
-                <div class="achievements-grid" id="achievementsBox">
-                    <div class="achievement-icon-card" id="ach-launch">
-                        <div class="badge-image">🚀</div>
-                        <div class="badge-title">Primer Lanzamiento</div>
-                    </div>
-                    <div class="achievement-icon-card" id="ach-custom">
-                        <div class="badge-image">🎨</div>
-                        <div class="badge-title">Identidad Indie</div>
-                    </div>
-                    <div class="achievement-icon-card" id="ach-chat">
-                        <div class="badge-image">💬</div>
-                        <div class="badge-title">Hablar con la IA</div>
-                    </div>
-                    <div class="achievement-icon-card" id="ach-upload">
-                        <div class="badge-image">📤</div>
-                        <div class="badge-title">Montar Casete</div>
-                    </div>
-                    <div class="achievement-icon-card" id="ach-reset">
-                        <div class="badge-image">🔄</div>
-                        <div class="badge-title">Reset Consola</div>
-                    </div>
-                    <div class="achievement-icon-card" id="ach-level">
-                        <div class="badge-image">👑</div>
-                        <div class="badge-title">Nivel Leyenda</div>
-                    </div>
+            <h3 style="font-family: var(--font-display); color: var(--text-white); margin-bottom: 15px;">ESTADÍSTICAS</h3>
+            <div class="profile-stats">
+                <div class="stat-box">
+                    <div class="stat-value" id="totalPlaytime">0</div>
+                    <div class="stat-label">HORAS JUGADAS</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value" id="totalGames">0</div>
+                    <div class="stat-label">JUEGOS EN BIBLIOTECA</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value" id="achievements">0</div>
+                    <div class="stat-label">LOGROS DESBLOQUEADOS</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-value" id="levelDisplay">15</div>
+                    <div class="stat-label">NIVEL DE PERFIL</div>
                 </div>
             </div>
         </div>
     </div>
 
-    <script type="module">
-        // Gemini API Configuration
-        const apiKey = ""; // Insert your API key here
+    <!-- MODAL PARA JUEGOS -->
+    <div id="gameModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalGameTitle">Juego</h2>
+                <button class="btn-close" onclick="closeGameModal()">✕</button>
+            </div>
+            <div id="modalGameBody"></div>
+        </div>
+    </div>
 
-        const libraryCassettes = [
-            {
-                id: "case-1",
-                titulo: "Producción Indie - Recurso 1",
-                url: "https://youtu.be/0q6g7O0C3hE?si=vdeIRC04uDvN6WNa",
-                descripcion: "Guías iniciales y técnicas esenciales de producción.",
-                isLocal: false,
-                playHours: 1.2
+    <script>
+        // DATOS DE JUEGOS
+        const games = {
+            snake: {
+                name: 'SNAKE ARCADE',
+                icon: '🐍',
+                price: 'GRATIS',
+                description: 'Clásico juego de serpiente. Come manzanas y evita tocarte.',
+                hasGame: true,
+                playtime: 0
             },
-            {
-                id: "case-2",
-                titulo: "Producción Indie - Recurso 2",
-                url: "https://youtu.be/0DETapou_zk?si=eI4FIF8vJrXmk_eq",
-                descripcion: "Configuraciones y consejos prácticos para creadores independientes.",
-                isLocal: false,
-                playHours: 3.5
+            galaga: {
+                name: 'GALAGA RETRO',
+                icon: '👾',
+                price: 'GRATIS',
+                description: 'Defensa espacial retro. Dispara a los enemigos.',
+                hasGame: true,
+                playtime: 0
             },
-            {
-                id: "case-3",
-                titulo: "Producción Indie - Recurso 3",
-                url: "https://youtu.be/bEX_4Csr2Bg?si=6OOglcCtOSoUpa-m",
-                descripcion: "Estrategias de desarrollo y optimización audiovisual low-cost.",
-                isLocal: false,
-                playHours: 0.8
+            breakout: {
+                name: 'BREAKOUT CLASSIC',
+                icon: '🧱',
+                price: 'GRATIS',
+                description: 'Juego de ladrillos. Golpea con la paleta.',
+                hasGame: true,
+                playtime: 0
+            },
+            flappy: {
+                name: 'FLAPPY BIRD',
+                icon: '🐦',
+                price: 'GRATIS',
+                description: 'Vuela entre obstáculos. Toca para saltar.',
+                hasGame: true,
+                playtime: 0
+            },
+            pong: {
+                name: 'PONG LEGEND',
+                icon: '🎾',
+                price: 'GRATIS',
+                description: 'El juego más antiguo. Juega contra la IA.',
+                hasGame: true,
+                playtime: 0
             }
-        ];
-
-        const achievementsList = {
-            "ach-launch": { title: "Primer Lanzamiento", unlocked: false },
-            "ach-custom": { title: "Identidad Indie", unlocked: false },
-            "ach-chat": { title: "Hablar con la IA", unlocked: false },
-            "ach-upload": { title: "Montar Casete", unlocked: false },
-            "ach-reset": { title: "Reset Consola", unlocked: false },
-            "ach-level": { title: "Nivel Leyenda", unlocked: false }
         };
 
-        let activeCassetteId = "case-1";
-        let animationFrameId = null;
+        let userLibrary = [];
+        let currentGame = null;
+        let gameLoops = {};
 
-        const projectList = document.getElementById('projectList');
-        const activeCassetteTitle = document.getElementById('activeCassetteTitle');
-        const statPlayTime = document.getElementById('statPlayTime');
-        const statAchievementsCount = document.getElementById('statAchievementsCount');
-        const launchGameBtn = document.getElementById('launchGameBtn');
-        const videoContainer = document.getElementById('videoContainer');
-        const videoUploader = document.getElementById('videoUploader');
-        const avatarUploader = document.getElementById('avatarUploader');
-        const avatarDisplay = document.getElementById('avatarDisplay');
-        const nameInput = document.getElementById('nameInput');
-        const profileNameDisplay = document.getElementById('profileNameDisplay');
-        const chatBox = document.getElementById('chatBox');
-        const userInput = document.getElementById('userInput');
-        const sendBtn = document.getElementById('sendBtn');
-        const clearChatBtn = document.getElementById('clearChatBtn');
-        const clientTheme = document.getElementById('clientTheme');
-        const crtBtn = document.getElementById('crtBtn');
-        const crtOverlay = document.getElementById('crtOverlay');
+        // SWITCH DE TABS
+        function switchTab(tabName) {
+            document.querySelectorAll('.client-content-view').forEach(v => v.classList.remove('active'));
+            document.querySelectorAll('.steam-tab').forEach(t => t.classList.remove('active'));
+            
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
 
-        window.addEventListener('DOMContentLoaded', () => {
-            const savedName = localStorage.getItem('steam_indie_name');
-            const savedAvatar = localStorage.getItem('steam_indie_avatar');
-            const savedTheme = localStorage.getItem('steam_indie_theme') || 'steam';
-            const savedCrt = localStorage.getItem('steam_indie_crt') || 'enabled';
-            const savedAchievements = localStorage.getItem('steam_indie_achievements');
-            const savedChatHistory = localStorage.getItem('steam_indie_chat_history');
-
-            if (savedName) {
-                profileNameDisplay.innerText = savedName.toUpperCase();
-                nameInput.value = savedName;
-            }
-            if (savedAvatar) {
-                avatarDisplay.src = savedAvatar;
-            }
-
-            clientTheme.value = savedTheme;
-            document.documentElement.setAttribute('data-theme', savedTheme);
-
-            if (savedCrt === 'disabled') {
-                crtOverlay.classList.add('disabled');
-                crtBtn.classList.add('inactive');
-                crtBtn.innerText = "CRT: OFF";
-            }
-
-            if (savedAchievements) {
-                const loadedAchs = JSON.parse(savedAchievements);
-                Object.keys(loadedAchs).forEach(key => {
-                    if (loadedAchs[key].unlocked) {
-                        unlockAchievementQuietly(key);
-                    }
-                });
-            }
-
-            if (savedChatHistory) {
-                const history = JSON.parse(savedChatHistory);
-                chatBox.innerHTML = '';
-                history.forEach(item => {
-                    appendMessageToDisplay(item.text, item.sender);
-                });
-            }
-
-            renderProjectLibrary();
-            updateDashboardDetails();
-        });
-
-        window.switchSteamTab = function(tabName, buttonElement) {
-            document.querySelectorAll('.client-content-view').forEach(view => {
-                view.classList.remove('active');
-            });
-            const targetView = document.getElementById(`view-${tabName}`);
-            if (targetView) targetView.classList.add('active');
-
-            document.querySelectorAll('.steam-tab').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            buttonElement.classList.add('active');
-        };
-
-        clientTheme.addEventListener('change', (e) => {
-            const val = e.target.value;
-            document.documentElement.setAttribute('data-theme', val);
-            localStorage.setItem('steam_indie_theme', val);
-        });
-
-        crtBtn.addEventListener('click', () => {
-            if (crtOverlay.classList.contains('disabled')) {
-                crtOverlay.classList.remove('disabled');
-                crtBtn.classList.remove('inactive');
-                crtBtn.innerText = "CRT: ON";
-                localStorage.setItem('steam_indie_crt', 'enabled');
-            } else {
-                crtOverlay.classList.add('disabled');
-                crtBtn.classList.add('inactive');
-                crtBtn.innerText = "CRT: OFF";
-                localStorage.setItem('steam_indie_crt', 'disabled');
-            }
-        });
-
-        function triggerSteamToast(id, title) {
-            if (achievementsList[id].unlocked) return;
-
-            achievementsList[id].unlocked = true;
-            localStorage.setItem('steam_indie_achievements', JSON.stringify(achievementsList));
-
-            const card = document.getElementById(id);
-            if (card) card.classList.add('unlocked');
-
-            const toast = document.getElementById('steamToast');
-            const toastTitle = document.getElementById('toastTitle');
-            toastTitle.innerText = title;
-            toast.classList.add('visible');
-
-            updateDashboardDetails();
-
-            setTimeout(() => {
-                toast.classList.remove('visible');
-            }, 4000);
+            if (tabName === 'tienda') loadStore();
+            if (tabName === 'biblioteca') loadLibrary();
+            if (tabName === 'perfil') loadProfile();
         }
 
-        function unlockAchievementQuietly(id) {
-            achievementsList[id].unlocked = true;
-            const card = document.getElementById(id);
-            if (card) card.classList.add('unlocked');
-        }
+        // CARGAR TIENDA
+        function loadStore() {
+            const storeGrid = document.getElementById('storeGrid');
+            storeGrid.innerHTML = '';
 
-        nameInput.addEventListener('input', (e) => {
-            const val = e.target.value.trim();
-            if (val) {
-                profileNameDisplay.innerText = val.toUpperCase();
-                localStorage.setItem('steam_indie_name', val);
-                triggerSteamToast("ach-custom", "Identidad Indie");
-            } else {
-                profileNameDisplay.innerText = "PLAYER ONE";
-                localStorage.removeItem('steam_indie_name');
-            }
-        });
-
-        avatarUploader.addEventListener('change', (e) => {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onloadend = () => {
-                    avatarDisplay.src = reader.result;
-                    localStorage.setItem('steam_indie_avatar', reader.result);
-                    triggerSteamToast("ach-custom", "Identidad Indie");
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-
-        function renderProjectLibrary() {
-            projectList.innerHTML = '';
-            libraryCassettes.forEach(cassette => {
+            Object.entries(games).forEach(([key, game]) => {
                 const card = document.createElement('div');
-                card.className = `project-card ${cassette.id === activeCassetteId ? 'active' : ''}`;
-                card.onclick = () => selectCassette(cassette.id);
-
+                card.className = 'game-card';
                 card.innerHTML = `
-                    <div class="project-icon">${cassette.isLocal ? '📼' : '🎬'}</div>
-                    <div class="project-info">
-                        <div class="project-name">${cassette.titulo}</div>
-                        <div class="project-meta">${cassette.isLocal ? 'Casete Local' : 'En Directo'}</div>
+                    <div class="game-thumbnail">${game.icon}</div>
+                    <div class="game-info">
+                        <div class="game-title">${game.name}</div>
+                        <p style="font-size: 0.8rem; color: var(--text-muted);">${game.description}</p>
+                        <div class="game-price">${game.price}</div>
+                        <button class="btn-add-cart" onclick="addToLibrary('${key}')">Agregar a Biblioteca</button>
                     </div>
                 `;
-                projectList.appendChild(card);
+                storeGrid.appendChild(card);
             });
         }
 
-        function selectCassette(id) {
-            activeCassetteId = id;
-            renderProjectLibrary();
-            updateDashboardDetails();
+        // AGREGAR A BIBLIOTECA
+        function addToLibrary(gameKey) {
+            if (!userLibrary.includes(gameKey)) {
+                userLibrary.push(gameKey);
+                alert(`${games[gameKey].name} agregado a tu biblioteca!`);
+                loadLibrary();
+            }
+        }
 
-            videoContainer.innerHTML = `
-                <div class="video-box-frame">
-                    <div class="mp4-placeholder-desc">
-                        Preparando cassette seleccionado. Pulsa "JUGAR" para inicializar la sincronización.
+        // CARGAR BIBLIOTECA
+        function loadLibrary() {
+            const libraryGrid = document.getElementById('libraryGrid');
+            libraryGrid.innerHTML = '';
+
+            if (userLibrary.length === 0) {
+                libraryGrid.innerHTML = '<p style="grid-column: 1/-1; color: var(--text-muted); text-align: center;">No tienes juegos. ¡Ve a la tienda!</p>';
+            }
+
+            userLibrary.forEach(gameKey => {
+                const game = games[gameKey];
+                const item = document.createElement('div');
+                item.className = 'game-library-item';
+                item.innerHTML = `
+                    <div class="game-icon">${game.icon}</div>
+                    <div class="game-name">${game.name}</div>
+                    <div class="game-playtime" id="playtime-${gameKey}">${game.playtime}h</div>
+                    <button class="btn-control" style="width: 100%; margin-top: 8px;" onclick="playGame('${gameKey}')">JUGAR</button>
+                `;
+                libraryGrid.appendChild(item);
+            });
+
+            document.getElementById('gameCount').textContent = `${userLibrary.length} JUEGOS`;
+        }
+
+        // JUGAR JUEGO
+        function playGame(gameKey) {
+            currentGame = gameKey;
+            const game = games[gameKey];
+            const modalBody = document.getElementById('modalGameBody');
+            document.getElementById('modalGameTitle').textContent = game.name;
+
+            modalBody.innerHTML = `
+                <div class="game-canvas-container">
+                    <canvas id="gameCanvas" width="400" height="400"></canvas>
+                    <div class="game-controls">
+                        <button class="btn-control" onclick="startGame()">INICIAR</button>
+                        <button class="btn-control" onclick="pauseGame()">PAUSA</button>
+                        <button class="btn-control" onclick="closeGameModal()">SALIR</button>
                     </div>
+                    <div id="gameInfo" style="color: var(--text-muted); text-align: center; font-size: 0.9rem;"></div>
                 </div>
             `;
+
+            document.getElementById('gameModal').classList.add('active');
+            setTimeout(() => initGame(gameKey), 100);
         }
 
-        function updateDashboardDetails() {
-            const activeItem = libraryCassettes.find(c => c.id === activeCassetteId);
-            if (!activeItem) return;
-
-            activeCassetteTitle.innerText = activeItem.titulo.toUpperCase();
-            statPlayTime.innerText = `${Math.floor(activeItem.playHours * 60)} minutos`;
-
-            const unlockedCount = Object.values(achievementsList).filter(a => a.unlocked).length;
-            statAchievementsCount.innerText = `${unlockedCount} / 6`;
-
-            if (unlockedCount === 6) {
-                triggerSteamToast("ach-level", "Nivel Leyenda");
-            }
-            document.getElementById('indieLevelVal').innerText = 10 + unlockedCount * 5;
-        }
-
-        launchGameBtn.addEventListener('click', () => {
-            const activeItem = libraryCassettes.find(c => c.id === activeCassetteId);
-            if (!activeItem) return;
-
-            triggerSteamToast("ach-launch", "Primer Lanzamiento");
-
-            if (!activeItem.isLocal) {
-                videoContainer.innerHTML = `
-                    <div class="video-box-frame" style="flex-direction: column; gap: 15px;">
-                        <div class="mp4-placeholder-desc">
-                            <strong>${activeItem.titulo}</strong> es un contenido externo hospedado en YouTube.
-                            <br><br>
-                            Para reproducirlo directamente, ve al recurso:<br>
-                            <a href="${activeItem.url}" target="_blank" style="color:var(--steam-blue); text-decoration: underline; font-weight: bold;">${activeItem.url}</a>
-                        </div>
-                    </div>
-                `;
-            } else {
-                videoContainer.innerHTML = `
-                    <div class="video-box-frame" style="background:#000;">
-                        <video id="steamVideoPlayer" autoplay loop controls style="width:100%; height:100%;">
-                            <source src="${activeItem.url}" type="video/mp4">
-                        </video>
-                        <div class="viz-overlay">
-                            <canvas id="speCanvas" class="viz-canvas"></canvas>
-                        </div>
-                    </div>
-                `;
-                const videoEl = document.getElementById('steamVideoPlayer');
-                setupSpectrometer(videoEl);
-            }
-        });
-
-        function setupSpectrometer(video) {
-            if (animationFrameId) {
-                cancelAnimationFrame(animationFrameId);
-            }
-
-            const canvas = document.getElementById('speCanvas');
-            if (!canvas) return;
+        // INICIALIZAR JUEGOS
+        function initGame(gameKey) {
+            const canvas = document.getElementById('gameCanvas');
             const ctx = canvas.getContext('2d');
+            let gameState = { running: false, paused: false };
 
-            const resizeCanvas = () => {
-                canvas.width = canvas.parentElement.clientWidth;
-                canvas.height = canvas.parentElement.clientHeight;
-            };
-            resizeCanvas();
-            window.addEventListener('resize', resizeCanvas);
-
-            function renderSpectrometer() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                const isActive = !video.paused;
-                const time = Date.now() * 0.005;
-
-                ctx.lineWidth = 2.5;
-                ctx.strokeStyle = getComputedStyle(document.documentElement).getPropertyValue('--steam-blue').trim() || '#66c0f4';
-                ctx.beginPath();
-
-                for (let i = 0; i < canvas.width; i += 6) {
-                    const waveIntensity = isActive ? Math.sin(time + i * 0.03) * Math.cos(time * 0.4 + i * 0.01) * 15 : 1;
-                    const height = (canvas.height / 2) + waveIntensity;
-                    if (i === 0) {
-                        ctx.moveTo(i, height);
-                    } else {
-                        ctx.lineTo(i, height);
-                    }
-                }
-                ctx.stroke();
-
-                animationFrameId = requestAnimationFrame(renderSpectrometer);
+            if (gameKey === 'snake') {
+                initSnake(canvas, ctx, gameState);
+            } else if (gameKey === 'galaga') {
+                initGalaga(canvas, ctx, gameState);
+            } else if (gameKey === 'breakout') {
+                initBreakout(canvas, ctx, gameState);
+            } else if (gameKey === 'flappy') {
+                initFlappy(canvas, ctx, gameState);
+            } else if (gameKey === 'pong') {
+                initPong(canvas, ctx, gameState);
             }
-            renderSpectrometer();
+
+            window.currentGameState = gameState;
         }
 
-        videoUploader.addEventListener('change', (e) => {
-            const file = e.target.files[0];
-            if (file) {
-                if (file.type !== "video/mp4") {
-                    alert("Por favor, sube únicamente archivos en formato MP4.");
+        // SNAKE GAME
+        function initSnake(canvas, ctx, state) {
+            const gridSize = 20;
+            let snake = [{x: 10, y: 10}];
+            let food = {x: 15, y: 15};
+            let direction = {x: 1, y: 0};
+            let nextDirection = {x: 1, y: 0};
+            let score = 0;
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowUp' && direction.y === 0) nextDirection = {x: 0, y: -1};
+                if (e.key === 'ArrowDown' && direction.y === 0) nextDirection = {x: 0, y: 1};
+                if (e.key === 'ArrowLeft' && direction.x === 0) nextDirection = {x: -1, y: 0};
+                if (e.key === 'ArrowRight' && direction.x === 0) nextDirection = {x: 1, y: 0};
+            });
+
+            function draw() {
+                ctx.fillStyle = '#000';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                // Grid
+                ctx.strokeStyle = rgba(102, 192, 244, 0.1)';
+                for (let i = 0; i <= canvas.width; i += gridSize) {
+                    ctx.beginPath();
+                    ctx.moveTo(i, 0);
+                    ctx.lineTo(i, canvas.height);
+                    ctx.stroke();
+                }
+
+                // Snake
+                ctx.fillStyle = '#4caf50';
+                snake.forEach((segment, i) => {
+                    ctx.fillRect(segment.x * gridSize, segment.y * gridSize, gridSize - 2, gridSize - 2);
+                });
+
+                // Food
+                ctx.fillStyle = '#ff9800';
+                ctx.fillRect(food.x * gridSize, food.y * gridSize, gridSize - 2, gridSize - 2);
+
+                // Score
+                ctx.fillStyle = '#66c0f4';
+                ctx.font = '16px Orbitron';
+                ctx.fillText(`Score: ${score}`, 10, canvas.height - 10);
+            }
+
+            function update() {
+                if (!state.running || state.paused) return;
+
+                direction = nextDirection;
+                const head = {x: snake[0].x + direction.x, y: snake[0].y + direction.y};
+
+                // Colisión con bordes
+                if (head.x < 0 || head.x >= canvas.width / gridSize || 
+                    head.y < 0 || head.y >= canvas.height / gridSize ||
+                    snake.some(s => s.x === head.x && s.y === head.y)) {
+                    state.running = false;
+                    document.getElementById('gameInfo').textContent = `GAME OVER! Score: ${score}`;
                     return;
                 }
-                const localUrl = URL.createObjectURL(file);
-                const newId = `local-${Date.now()}`;
-                
-                const newCassette = {
-                    id: newId,
-                    titulo: file.name,
-                    url: localUrl,
-                    descripcion: "Archivo de video personal cargado mediante la interfaz de tienda.",
-                    isLocal: true,
-                    playHours: 0.0
-                };
 
-                libraryCassettes.push(newCassette);
-                activeCassetteId = newId;
+                snake.unshift(head);
 
-                renderProjectLibrary();
-                updateDashboardDetails();
-                triggerSteamToast("ach-upload", "Montar Casete");
-
-                const bibTab = document.querySelectorAll('.steam-tab')[1];
-                switchSteamTab('biblioteca', bibTab);
-            }
-        });
-
-        async function handleChat() {
-            const text = userInput.value.trim();
-            if (!text) return;
-
-            appendMessageToDisplay(text, 'user');
-            saveChatHistory(text, 'user');
-            userInput.value = '';
-
-            triggerSteamToast("ach-chat", "Hablar con la IA");
-
-            const loadingId = appendLoadingIndicator();
-
-            if (!apiKey || apiKey === "") {
-                setTimeout(() => {
-                    removeLoadingIndicator(loadingId);
-                    const errorResponse = `<strong>[STEAM CHATBOT INTERACTIVE]:</strong> Hola. Te ayudaré en lo que necesites. <br><br>` +
-                        `⚠️ El sistema de chat está listo, pero no se ha configurado una clave API válida de Google AI Studio. <br><br>` +
-                        `<strong>Para activarla gratis:</strong><br>` +
-                        `1. Crea una clave en <a href="https://aistudio.google.com/" target="_blank" style="color:var(--steam-blue); text-decoration: underline;">Google AI Studio</a>.<br>` +
-                        `2. Pégala en el código fuente en la línea 519 (<code>const apiKey = "...";</code>).<br>` +
-                        `3. Guarda tu código y vuelve a intentarlo.`;
-                    appendMessageToDisplay(errorResponse, 'system');
-                }, 800);
-                return;
-            }
-
-            const endpointUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
-
-            const systemInstruction = `
-                Eres el asistente oficial de soporte y desarrollo integrado en el cliente de Steam de 'Indie Productions'.
-                Te comunicas de manera asertiva, amigable y muy capacitada sobre el uso del SDK de Gemini 1.5, llamadas de API y metodologías de desarrollo.
-                Utiliza formatos claros y bloques de código tradicionales de programación si te lo solicitan.
-            `;
-
-            const payload = {
-                contents: [{
-                    parts: [{ text: text }]
-                }],
-                systemInstruction: {
-                    parts: [{ text: systemInstruction }]
+                if (head.x === food.x && head.y === food.y) {
+                    score += 10;
+                    food = {
+                        x: Math.floor(Math.random() * (canvas.width / gridSize)),
+                        y: Math.floor(Math.random() * (canvas.height / gridSize))
+                    };
+                } else {
+                    snake.pop();
                 }
-            };
+            }
 
-            const backoffDelays = [1000, 2000, 4000, 8000, 16000];
-            let success = false;
-            let responseText = "";
+            function gameLoop() {
+                update();
+                draw();
+                gameLoops[currentGame] = setTimeout(gameLoop, 100);
+            }
 
-            for (let attempt = 0; attempt < 5; attempt++) {
-                try {
-                    const response = await fetch(endpointUrl, {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify(payload)
+            state.running = true;
+            gameLoops[currentGame] = setTimeout(gameLoop, 100);
+            draw();
+        }
+
+        // GALAGA GAME
+        function initGalaga(canvas, ctx, state) {
+            let player = {x: canvas.width / 2 - 20, y: canvas.height - 40, width: 40, height: 30};
+            let bullets = [];
+            let enemies = [];
+            let score = 0;
+
+            for (let i = 0; i < 3; i++) {
+                for (let j = 0; j < 5; j++) {
+                    enemies.push({x: j * 70 + 30, y: i * 50 + 20, width: 40, height: 30, alive: true});
+                }
+            }
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft' && player.x > 0) player.x -= 20;
+                if (e.key === 'ArrowRight' && player.x < canvas.width - player.width) player.x += 20;
+                if (e.key === ' ') {
+                    bullets.push({x: player.x + player.width / 2 - 3, y: player.y, width: 6, height: 15});
+                }
+            });
+
+            function draw() {
+                ctx.fillStyle = '#000';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                // Player
+                ctx.fillStyle = '#4caf50';
+                ctx.fillRect(player.x, player.y, player.width, player.height);
+
+                // Bullets
+                ctx.fillStyle = '#ffff00';
+                bullets.forEach(b => ctx.fillRect(b.x, b.y, b.width, b.height));
+
+                // Enemies
+                ctx.fillStyle = '#ff2a85';
+                enemies.forEach(e => {
+                    if (e.alive) ctx.fillRect(e.x, e.y, e.width, e.height);
+                });
+
+                // Score
+                ctx.fillStyle = '#66c0f4';
+                ctx.font = '16px Orbitron';
+                ctx.fillText(`Score: ${score}`, 10, canvas.height - 10);
+            }
+
+            function update() {
+                if (!state.running) return;
+
+                // Mover balas
+                bullets = bullets.filter(b => {
+                    b.y -= 5;
+                    return b.y > 0;
+                });
+
+                // Colisiones
+                bullets.forEach((b, bi) => {
+                    enemies.forEach((e, ei) => {
+                        if (e.alive && b.x < e.x + e.width && b.x + b.width > e.x &&
+                            b.y < e.y + e.height && b.y + b.height > e.y) {
+                            e.alive = false;
+                            bullets.splice(bi, 1);
+                            score += 10;
+                        }
                     });
+                });
 
-                    if (!response.ok) {
-                        throw new Error(`Error HTTP: ${response.status}`);
-                    }
-
-                    const jsonResult = await response.json();
-                    responseText = jsonResult.candidates?.[0]?.content?.parts?.[0]?.text;
-                    
-                    if (responseText) {
-                        success = true;
-                        break;
-                    } else {
-                        throw new Error("Respuesta vacía de la API.");
-                    }
-                } catch (err) {
-                    if (attempt === 4) {
-                        removeLoadingIndicator(loadingId);
-                        appendMessageToDisplay("Ocurrió un error persistente al conectar con Google Gemini. Inténtalo de nuevo más tarde.", "system");
-                        return;
-                    }
-                    await new Promise(resolve => setTimeout(resolve, backoffDelays[attempt]));
+                // Enemigos muertos
+                if (enemies.every(e => !e.alive)) {
+                    state.running = false;
+                    document.getElementById('gameInfo').textContent = `¡GANASTE! Score: ${score}`;
                 }
             }
 
-            if (success) {
-                removeLoadingIndicator(loadingId);
-                appendMessageToDisplay(responseText, 'bot');
-                saveChatHistory(responseText, 'bot');
+            function gameLoop() {
+                update();
+                draw();
+                gameLoops[currentGame] = setTimeout(gameLoop, 50);
+            }
+
+            state.running = true;
+            gameLoops[currentGame] = setTimeout(gameLoop, 50);
+            draw();
+        }
+
+        // BREAKOUT GAME
+        function initBreakout(canvas, ctx, state) {
+            let paddle = {x: canvas.width / 2 - 40, y: canvas.height - 20, width: 80, height: 15};
+            let ball = {x: canvas.width / 2, y: canvas.height - 50, radius: 8, dx: 4, dy: -4};
+            let bricks = [];
+            let score = 0;
+
+            for (let i = 0; i < 5; i++) {
+                for (let j = 0; j < 8; j++) {
+                    bricks.push({x: j * 50, y: i * 20, width: 50, height: 20, alive: true});
+                }
+            }
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft' && paddle.x > 0) paddle.x -= 30;
+                if (e.key === 'ArrowRight' && paddle.x < canvas.width - paddle.width) paddle.x += 30;
+            });
+
+            function draw() {
+                ctx.fillStyle = '#000';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                // Paddle
+                ctx.fillStyle = '#4caf50';
+                ctx.fillRect(paddle.x, paddle.y, paddle.width, paddle.height);
+
+                // Ball
+                ctx.fillStyle = '#ffff00';
+                ctx.beginPath();
+                ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Bricks
+                ctx.fillStyle = '#ff2a85';
+                bricks.forEach(b => {
+                    if (b.alive) ctx.fillRect(b.x, b.y, b.width, b.height);
+                });
+
+                // Score
+                ctx.fillStyle = '#66c0f4';
+                ctx.font = '16px Orbitron';
+                ctx.fillText(`Score: ${score}`, 10, canvas.height - 10);
+            }
+
+            function update() {
+                if (!state.running) return;
+
+                ball.x += ball.dx;
+                ball.y += ball.dy;
+
+                if (ball.x - ball.radius < 0 || ball.x + ball.radius > canvas.width) ball.dx *= -1;
+                if (ball.y - ball.radius < 0) ball.dy *= -1;
+
+                // Paddle
+                if (ball.y + ball.radius > paddle.y && ball.x > paddle.x && ball.x < paddle.x + paddle.width) {
+                    ball.dy *= -1;
+                }
+
+                // Bricks
+                bricks.forEach(b => {
+                    if (b.alive && ball.x > b.x && ball.x < b.x + b.width &&
+                        ball.y > b.y && ball.y < b.y + b.height) {
+                        b.alive = false;
+                        ball.dy *= -1;
+                        score += 10;
+                    }
+                });
+
+                if (ball.y > canvas.height) {
+                    state.running = false;
+                    document.getElementById('gameInfo').textContent = `GAME OVER! Score: ${score}`;
+                }
+
+                if (bricks.every(b => !b.alive)) {
+                    state.running = false;
+                    document.getElementById('gameInfo').textContent = `¡GANASTE! Score: ${score}`;
+                }
+            }
+
+            function gameLoop() {
+                update();
+                draw();
+                gameLoops[currentGame] = setTimeout(gameLoop, 30);
+            }
+
+            state.running = true;
+            gameLoops[currentGame] = setTimeout(gameLoop, 30);
+            draw();
+        }
+
+        // FLAPPY BIRD GAME
+        function initFlappy(canvas, ctx, state) {
+            let bird = {x: 50, y: 150, radius: 15, dy: 0};
+            let pipes = [];
+            let score = 0;
+            let frameCount = 0;
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === ' ') bird.dy = -8;
+            });
+
+            function draw() {
+                ctx.fillStyle = '#000';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                // Bird
+                ctx.fillStyle = '#ffaa00';
+                ctx.beginPath();
+                ctx.arc(bird.x, bird.y, bird.radius, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Pipes
+                ctx.fillStyle = '#4caf50';
+                pipes.forEach(p => {
+                    ctx.fillRect(p.x, 0, p.width, p.top);
+                    ctx.fillRect(p.x, p.top + p.gap, p.width, canvas.height - p.top - p.gap);
+                });
+
+                // Score
+                ctx.fillStyle = '#66c0f4';
+                ctx.font = '16px Orbitron';
+                ctx.fillText(`Score: ${score}`, 10, canvas.height - 10);
+            }
+
+            function update() {
+                if (!state.running) return;
+
+                bird.dy += 0.4;
+                bird.y += bird.dy;
+
+                if (bird.y + bird.radius > canvas.height || bird.y - bird.radius < 0) {
+                    state.running = false;
+                    document.getElementById('gameInfo').textContent = `GAME OVER! Score: ${score}`;
+                    return;
+                }
+
+                frameCount++;
+                if (frameCount % 80 === 0) {
+                    let gap = 100;
+                    let top = Math.random() * (canvas.height - gap - 100) + 50;
+                    pipes.push({x: canvas.width, y: 0, width: 50, top: top, gap: gap});
+                }
+
+                pipes = pipes.filter(p => {
+                    p.x -= 4;
+
+                    if (p.x + p.width === bird.x) score++;
+
+                    if (bird.x > p.x && bird.x < p.x + p.width) {
+                        if (bird.y - bird.radius < p.top || bird.y + bird.radius > p.top + p.gap) {
+                            state.running = false;
+                            document.getElementById('gameInfo').textContent = `GAME OVER! Score: ${score}`;
+                        }
+                    }
+
+                    return p.x + p.width > 0;
+                });
+            }
+
+            function gameLoop() {
+                update();
+                draw();
+                gameLoops[currentGame] = setTimeout(gameLoop, 30);
+            }
+
+            state.running = true;
+            gameLoops[currentGame] = setTimeout(gameLoop, 30);
+            draw();
+        }
+
+        // PONG GAME
+        function initPong(canvas, ctx, state) {
+            let paddles = {
+                left: {x: 10, y: canvas.height / 2 - 40, width: 10, height: 80},
+                right: {x: canvas.width - 20, y: canvas.height / 2 - 40, width: 10, height: 80}
+            };
+            let ball = {x: canvas.width / 2, y: canvas.height / 2, radius: 8, dx: 5, dy: 5};
+            let score = {left: 0, right: 0};
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'w' && paddles.left.y > 0) paddles.left.y -= 20;
+                if (e.key === 's' && paddles.left.y < canvas.height - paddles.left.height) paddles.left.y += 20;
+                if (e.key === 'ArrowUp' && paddles.right.y > 0) paddles.right.y -= 20;
+                if (e.key === 'ArrowDown' && paddles.right.y < canvas.height - paddles.right.height) paddles.right.y += 20;
+            });
+
+            function draw() {
+                ctx.fillStyle = '#000';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                // Paddles
+                ctx.fillStyle = '#4caf50';
+                ctx.fillRect(paddles.left.x, paddles.left.y, paddles.left.width, paddles.left.height);
+                ctx.fillRect(paddles.right.x, paddles.right.y, paddles.right.width, paddles.right.height);
+
+                // Ball
+                ctx.fillStyle = '#ffff00';
+                ctx.beginPath();
+                ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Score
+                ctx.fillStyle = '#66c0f4';
+                ctx.font = '16px Orbitron';
+                ctx.fillText(`${score.left} - ${score.right}`, canvas.width / 2 - 20, 25);
+            }
+
+            function update() {
+                if (!state.running) return;
+
+                ball.x += ball.dx;
+                ball.y += ball.dy;
+
+                if (ball.y - ball.radius < 0 || ball.y + ball.radius > canvas.height) ball.dy *= -1;
+
+                // Paddle collisions
+                if (ball.x - ball.radius < paddles.left.x + paddles.left.width &&
+                    ball.y > paddles.left.y && ball.y < paddles.left.y + paddles.left.height) {
+                    ball.dx *= -1;
+                }
+
+                if (ball.x + ball.radius > paddles.right.x &&
+                    ball.y > paddles.right.y && ball.y < paddles.right.y + paddles.right.height) {
+                    ball.dx *= -1;
+                }
+
+                if (ball.x - ball.radius < 0) {
+                    score.right++;
+                    ball = {x: canvas.width / 2, y: canvas.height / 2, radius: 8, dx: 5, dy: 5};
+                }
+
+                if (ball.x + ball.radius > canvas.width) {
+                    score.left++;
+                    ball = {x: canvas.width / 2, y: canvas.height / 2, radius: 8, dx: -5, dy: 5};
+                }
+            }
+
+            function gameLoop() {
+                update();
+                draw();
+                gameLoops[currentGame] = setTimeout(gameLoop, 30);
+            }
+
+            state.running = true;
+            gameLoops[currentGame] = setTimeout(gameLoop, 30);
+            draw();
+        }
+
+        // CONTROLES
+        function startGame() {
+            if (window.currentGameState) window.currentGameState.running = true;
+        }
+
+        function pauseGame() {
+            if (window.currentGameState) window.currentGameState.paused = !window.currentGameState.paused;
+        }
+
+        function closeGameModal() {
+            document.getElementById('gameModal').classList.remove('active');
+            if (gameLoops[currentGame]) clearTimeout(gameLoops[currentGame]);
+        }
+
+        function toggleCRT() {
+            const overlay = document.getElementById('crtOverlay');
+            const btn = document.getElementById('crtBtn');
+            overlay.classList.toggle('disabled');
+            btn.textContent = overlay.classList.contains('disabled') ? 'CRT: OFF' : 'CRT: ON';
+        }
+
+        // CHAT
+        function sendChatMessage() {
+            const input = document.getElementById('chatInput');
+            const message = input.value.trim();
+
+            if (message) {
+                const messagesDiv = document.getElementById('chatMessages');
+                const userMsg = document.createElement('div');
+                userMsg.className = 'chat-message user';
+                userMsg.textContent = message;
+                messagesDiv.appendChild(userMsg);
+
+                input.value = '';
+                messagesDiv.scrollTop = messagesDiv.scrollHeight;
+
+                // Respuesta simulada
+                setTimeout(() => {
+                    const botMsg = document.createElement('div');
+                    botMsg.className = 'chat-message bot';
+                    botMsg.textContent = '¡Hola! Soy el Asistente Indie Steam. ¿En qué puedo ayudarte hoy?';
+                    messagesDiv.appendChild(botMsg);
+                    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+                }, 300);
             }
         }
 
-        function appendMessageToDisplay(text, sender) {
-            const bubble = document.createElement('div');
-            bubble.classList.add('bubble-msg', sender);
-
-            if (sender === 'user') {
-                bubble.innerText = text;
-            } else if (sender === 'system') {
-                bubble.innerHTML = text;
-            } else {
-                let formatted = text
-                    .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" style="color:var(--steam-blue);">$1</a>')
-                    .replace(/```javascript([\s\S]*?)```/g, '<pre>$1</pre>')
-                    .replace(/```html([\s\S]*?)```/g, '<pre>$1</pre>')
-                    .replace(/```js([\s\S]*?)```/g, '<pre>$1</pre>')
-                    .replace(/```([\s\S]*?)```/g, '<pre>$1</pre>');
-                bubble.innerHTML = formatted;
-            }
-
-            chatBox.appendChild(bubble);
-            chatBox.scrollTop = chatBox.scrollHeight;
+        function handleChatKeypress(e) {
+            if (e.key === 'Enter') sendChatMessage();
         }
 
-        function appendLoadingIndicator() {
-            const id = 'loader_' + Date.now();
-            const div = document.createElement('div');
-            div.id = id;
-            div.className = 'status-pulse-compiling';
-            div.innerHTML = `<span>// CONECTANDO SOPORTE...</span>`;
-            chatBox.appendChild(div);
-            chatBox.scrollTop = chatBox.scrollHeight;
-            return id;
+        // PERFIL
+        function loadProfile() {
+            const totalGames = userLibrary.length;
+            const totalPlaytime = Object.values(games).reduce((sum, g) => sum + g.playtime, 0);
+            
+            document.getElementById('totalGames').textContent = totalGames;
+            document.getElementById('totalPlaytime').textContent = totalPlaytime;
+            document.getElementById('achievements').textContent = Math.floor(totalGames * 2);
         }
 
-        function removeLoadingIndicator(id) {
-            const el = document.getElementById(id);
-            if (el) el.remove();
-        }
-
-        function saveChatHistory(text, sender) {
-            let history = JSON.parse(localStorage.getItem('steam_indie_chat_history') || '[]');
-            history.push({ text, sender });
-            localStorage.setItem('steam_indie_chat_history', JSON.stringify(history));
-        }
-
-        clearChatBtn.onclick = () => {
-            localStorage.removeItem('steam_indie_chat_history');
-            chatBox.innerHTML = '<div class="bubble-msg bot">Terminal restablecida de forma exitosa. Memoria de caché local limpia y lista para nuevas solicitudes.</div>';
-            triggerSteamToast("ach-reset", "Reset Consola");
-        };
-
-        sendBtn.onclick = handleChat;
-        userInput.onkeypress = (e) => {
-            if (e.key === 'Enter') handleChat();
-        };
+        // INICIALIZAR
+        window.addEventListener('load', () => {
+            loadStore();
+        });
     </script>
 </body>
 </html>
